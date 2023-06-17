@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Navigation({ title, slug, lessonId, modules }) {
   return (
     <aside className="shadow-md bg-white px-1">
@@ -11,14 +13,14 @@ export default function Navigation({ title, slug, lessonId, modules }) {
               {module.lessons &&
                 module.lessons.map((lesson) => (
                   <li key={lesson.id} className="relative">
-                    <a
+                    <Link
                       className={`flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out ${
                         lessonId === lesson.id ? "bg-gray-100" : ""
                       }`}
                       href={`/courses/${slug}/lessons/${lesson.id}`}
                     >
                       {lesson.title} {module.isLocked ? "🔒" : ""}
-                    </a>
+                    </Link>
                   </li>
                 ))}
             </ul>

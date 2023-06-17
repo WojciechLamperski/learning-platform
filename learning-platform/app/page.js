@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 // Get all the courses
 async function getCourses() {
   const response = await fetch(process.env.HYGRAPH_ENDPOINT, {
@@ -39,7 +41,7 @@ export default async function Home() {
         return (
           <div key={course.id}>
             <h2 className="text-2xl font-bold">
-              <a href={`/courses/${course.slug}`}>{course.title}</a>{" "}
+              <Link href={`/courses/${course.slug}`}>{course.title}</Link>{" "}
               {course.isLocked} {containsLockedModules(course.modules) && "🔒"}
             </h2>
           </div>
