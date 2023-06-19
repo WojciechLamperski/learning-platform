@@ -23,7 +23,7 @@ async function getLesson(id) {
                     }
                     description
                     title
-                    videoUrl
+                    videoURL
                     navDetails: moduleModel {
                         title
                         course {
