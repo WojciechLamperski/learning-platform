@@ -1,0 +1,35 @@
+name: feature branches push
+
+on:
+  push:
+    branches-ignore:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup
+        uses: actions/setup-node@v3
+        env:
+          FORCE_COLOR: 0
+        with:
+          node-version: 18.16.0
+          cache: 'npm'
+      - run: npm install --frozen-lockfile
+      - name: 'Create .env.local file'
+        run: |
+          touch .env.local
+          echo CMS_NOCACHE_ENDPOINT=${{ secrets.CMS_NOCACHE_ENDPOINT }} >> .env.local
+          echo NEXT_TELEMETRY_DISABLED=1 >> .env.local
+      - run: yarn build
+      - name: Component tests
+        uses: cypress-io/github-action@v5
+        with:
+          component: true
+      - name: Browser end-to-end tests
+        uses: cypress-io/github-action@v5
+        with:
+          start: yarn start
+          wait-on: 'http://localhost:3000'
