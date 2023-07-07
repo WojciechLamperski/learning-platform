@@ -2,7 +2,7 @@ name: feature branches push
 
 on:
   push:
-    branches-ignore:
+    branches:
       - main
 
 jobs:
