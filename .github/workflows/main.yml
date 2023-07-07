@@ -2,7 +2,7 @@ name: feature branches push
 
 on:
   push:
-    branches-ignore:
+    branches:
       - main
 
 jobs:
@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: 18.16.0
           cache: 'npm'
-      - run: npm install --frozen-lockfile
+      - run: npm ci
       - name: 'Create .env.local file'
         run: |
           touch .env.local
