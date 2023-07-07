@@ -16,14 +16,14 @@ jobs:
           FORCE_COLOR: 0
         with:
           node-version: 18.16.0
-          cache: 'npm'
-      - run: npm install --frozen-lockfile
+          cache: 'yarn'
+      - run: yarn install --frozen-lockfile
       - name: 'Create .env.local file'
         run: |
           touch .env.local
           echo CMS_NOCACHE_ENDPOINT=${{ secrets.CMS_NOCACHE_ENDPOINT }} >> .env.local
           echo NEXT_TELEMETRY_DISABLED=1 >> .env.local
-      - run: npm run build
+      - run: yarn build
       - name: Component tests
         uses: cypress-io/github-action@v5
         with:
@@ -31,5 +31,5 @@ jobs:
       - name: Browser end-to-end tests
         uses: cypress-io/github-action@v5
         with:
-          start: npm run start
+          start: yarn start
           wait-on: 'http://localhost:3000'
