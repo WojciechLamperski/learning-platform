@@ -23,7 +23,7 @@ jobs:
           touch .env.local
           echo CMS_NOCACHE_ENDPOINT=${{ secrets.CMS_NOCACHE_ENDPOINT }} >> .env.local
           echo NEXT_TELEMETRY_DISABLED=1 >> .env.local
-      - run: yarn build
+      - run: npm build
       - name: Component tests
         uses: cypress-io/github-action@v5
         with:
@@ -31,5 +31,5 @@ jobs:
       - name: Browser end-to-end tests
         uses: cypress-io/github-action@v5
         with:
-          start: yarn start
+          start: npm start
           wait-on: 'http://localhost:3000'
