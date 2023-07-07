@@ -1,0 +1,26 @@
+name: test workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  hello: 
+    runs-on: windows
+    steps:
+      - uses: actions/checkout@v2
+      - name: hello world
+        run: echo "Hello World"
+        shell: bash
+
+  goodbye:
+    runs-on: windows
+    steps:
+      - name: hello world
+        run: echo "Goodbye World"
+        shell: bash
