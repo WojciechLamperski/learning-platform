@@ -21,7 +21,7 @@ jobs:
       - name: 'Create .env.local file'
         run: |
           touch .env.local
-          echo CMS_NOCACHE_ENDPOINT=${{ secrets.CMS_NOCACHE_ENDPOINT }} >> .env.local
+          echo HYGRAPH_ENDPOINT=${{ secrets.HYGRAPH_ENDPOINT }} >> .env.local
           echo NEXT_TELEMETRY_DISABLED=1 >> .env.local
       - run: npm run build
       - name: Component tests
